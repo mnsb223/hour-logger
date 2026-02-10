@@ -1,9 +1,11 @@
 // public/sw.js
-const CACHE_NAME = 'timeclock-pwa-v1'
 
 // Add core stuff you want available offline.
 // Vite will build hashed assets, so we do a runtime cache for JS/CSS below too.
-const CORE_ASSETS = ['/', '/index.html', '/manifest.webmanifest']
+const BASE = self.registration.scope.replace(self.location.origin, '').replace(/\/$/, '')
+const CACHE_NAME = 'timeclock-pwa-v1'
+const CORE_ASSETS = [`${BASE}/`, `${BASE}/index.html`, `${BASE}/manifest.webmanifest`]
+
 
 self.addEventListener('install', event => {
   event.waitUntil(
